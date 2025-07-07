@@ -1,6 +1,7 @@
 /**
  * ===== NAVEGAÇÃO MOBILE OTIMIZADA =====
  * Funcionalidades relacionadas ao menu e navegação com foco em mobile
+ * Otimizado para performance
  */
 
 class Navigation {
@@ -9,6 +10,9 @@ class Navigation {
     this.navLinks = document.querySelector('.nav-links');
     this.header = document.querySelector('header');
     this.isMenuOpen = false;
+    this.isMobile = window.innerWidth <= 600;
+    this.scrollTimer = null;
+    this.lastScrollTop = 0;
     this.init();
   }
 
@@ -16,7 +20,9 @@ class Navigation {
     this.setupMobileMenu();
     this.setupSmoothScroll();
     this.setupMenuClose();
-    this.setupTouchGestures();
+    if (this.isMobile) {
+      this.setupTouchGestures();
+    }
     this.setupScrollBehavior();
     this.setupAccessibility();
   }
@@ -31,21 +37,23 @@ class Navigation {
       e.preventDefault();
       e.stopPropagation();
       this.toggleMenu();
-    });
+    }, { passive: false });
 
-    // Fecha menu ao clicar fora
-    document.addEventListener('click', (e) => {
+    // Fecha menu ao clicar fora (otimizado)
+    const handleOutsideClick = (e) => {
       if (this.isMenuOpen && !this.menuToggle.contains(e.target) && !this.navLinks.contains(e.target)) {
         this.closeMenu();
       }
-    });
+    };
+
+    document.addEventListener('click', handleOutsideClick, { passive: true });
 
     // Fecha menu ao pressionar ESC
     document.addEventListener('keydown', (e) => {
       if (e.key === 'Escape' && this.isMenuOpen) {
         this.closeMenu();
       }
-    });
+    }, { passive: true });
   }
 
   /**
@@ -104,7 +112,7 @@ class Navigation {
         setTimeout(() => {
           this.closeMenu();
         }, 100);
-      });
+      }, { passive: true });
     });
   }
 
@@ -119,20 +127,19 @@ class Navigation {
         e.preventDefault();
         const targetId = link.getAttribute('href');
         this.scrollToSection(targetId);
-      });
+      }, { passive: false });
     });
   }
 
   /**
-   * Faz scroll suave para uma seção com offset mobile
+   * Faz scroll suave para uma seção com offset para header fixo
    */
   scrollToSection(targetId) {
     const targetElement = document.querySelector(targetId);
     
     if (targetElement) {
       const headerHeight = this.header.offsetHeight;
-      const isMobile = window.innerWidth <= 600;
-      const offset = isMobile ? headerHeight + 10 : headerHeight + 20;
+      const offset = headerHeight + 20; // Offset para header fixo
       const targetPosition = targetElement.offsetTop - offset;
       
       window.scrollTo({
@@ -143,7 +150,7 @@ class Navigation {
   }
 
   /**
-   * Configura gestos de toque para mobile
+   * Configura gestos de toque para mobile (otimizado)
    */
   setupTouchGestures() {
     let startY = 0;
@@ -156,8 +163,8 @@ class Navigation {
       isSwiping = true;
     }, { passive: true });
 
-    // Detecta movimento do swipe
-    this.navLinks.addEventListener('touchmove', (e) => {
+    // Detecta movimento do swipe (otimizado)
+    const handleTouchMove = (e) => {
       if (!isSwiping) return;
       
       currentY = e.touches[0].clientY;
@@ -168,7 +175,19 @@ class Navigation {
         this.closeMenu();
         isSwiping = false;
       }
-    }, { passive: true });
+    };
+
+    // Usa throttle para melhor performance
+    let touchTimer;
+    const throttledTouchMove = (e) => {
+      if (touchTimer) return;
+      touchTimer = setTimeout(() => {
+        handleTouchMove(e);
+        touchTimer = null;
+      }, 16);
+    };
+
+    this.navLinks.addEventListener('touchmove', throttledTouchMove, { passive: true });
 
     // Finaliza o swipe
     this.navLinks.addEventListener('touchend', () => {
@@ -177,27 +196,12 @@ class Navigation {
   }
 
   /**
-   * Configura comportamento de scroll para mobile
+   * Configura comportamento de scroll para mobile (otimizado)
+   * Header agora é sempre fixo, não precisa esconder/mostrar
    */
   setupScrollBehavior() {
-    let lastScrollTop = 0;
-    const scrollThreshold = 10;
-
-    window.addEventListener('scroll', () => {
-      const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-      
-      // Esconde/mostra header baseado na direção do scroll
-      if (Math.abs(scrollTop - lastScrollTop) > scrollThreshold) {
-        if (scrollTop > lastScrollTop && scrollTop > 100) {
-          // Scroll para baixo - esconde header
-          this.header.style.transform = 'translateY(-100%)';
-        } else {
-          // Scroll para cima - mostra header
-          this.header.style.transform = 'translateY(0)';
-        }
-        lastScrollTop = scrollTop;
-      }
-    }, { passive: true });
+    // Header fixo - não precisa de lógica de scroll
+    // Mantém apenas para futuras funcionalidades se necessário
   }
 
   /**
@@ -205,30 +209,42 @@ class Navigation {
    */
   setupAccessibility() {
     // Adiciona atributos ARIA
-    this.menuToggle.setAttribute('aria-label', 'Abrir menu de navegação');
-    this.menuToggle.setAttribute('aria-expanded', 'false');
-    this.menuToggle.setAttribute('aria-controls', 'nav-links');
-    
-    this.navLinks.setAttribute('id', 'nav-links');
-    this.navLinks.setAttribute('role', 'navigation');
-    this.navLinks.setAttribute('aria-label', 'Menu principal');
+    if (this.menuToggle) {
+      this.menuToggle.setAttribute('aria-expanded', 'false');
+      this.menuToggle.setAttribute('aria-label', 'Abrir menu de navegação');
+    }
 
-    // Atualiza aria-expanded quando o menu é aberto/fechado
     const updateAriaExpanded = (expanded) => {
-      this.menuToggle.setAttribute('aria-expanded', expanded.toString());
+      if (this.menuToggle) {
+        this.menuToggle.setAttribute('aria-expanded', expanded.toString());
+        this.menuToggle.setAttribute('aria-label', 
+          expanded ? 'Fechar menu de navegação' : 'Abrir menu de navegação'
+        );
+      }
     };
 
-    // Observa mudanças na classe active
-    const observer = new MutationObserver((mutations) => {
-      mutations.forEach((mutation) => {
-        if (mutation.type === 'attributes' && mutation.attributeName === 'class') {
-          const isActive = this.navLinks.classList.contains('active');
-          updateAriaExpanded(isActive);
-        }
-      });
-    });
+    // Atualiza ARIA quando o menu é aberto/fechado
+    const originalOpenMenu = this.openMenu.bind(this);
+    const originalCloseMenu = this.closeMenu.bind(this);
 
-    observer.observe(this.navLinks, { attributes: true });
+    this.openMenu = () => {
+      originalOpenMenu();
+      updateAriaExpanded(true);
+    };
+
+    this.closeMenu = () => {
+      originalCloseMenu();
+      updateAriaExpanded(false);
+    };
+  }
+
+  /**
+   * Limpa recursos para melhor performance
+   */
+  destroy() {
+    if (this.scrollTimer) {
+      clearTimeout(this.scrollTimer);
+    }
   }
 }
 

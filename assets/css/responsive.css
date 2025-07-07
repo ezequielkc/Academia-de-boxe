@@ -117,7 +117,7 @@
   
   /* ===== HERO MOBILE ===== */
   .hero {
-    margin-top: 60px;
+    margin-top: 70px; /* Ajustado para header fixo mobile */
     padding: 0;
     background: none;
     min-height: 550px;
@@ -580,6 +580,7 @@
   }
   
   .hero {
+    margin-top: 85px; /* Ajustado para header fixo */
     min-height: 650px;
   }
   
@@ -662,6 +663,7 @@
   }
   
   .hero {
+    margin-top: 90px; /* Ajustado para header fixo */
     min-height: 700px;
   }
   
@@ -764,7 +766,7 @@
   .hero {
     background: url(../images/Boxe\ 1.jpg) center center/cover no-repeat;
     min-height: 80vh;
-    margin-top: 0;
+    margin-top: 100px; /* Ajustado para header fixo desktop */
     padding: 0;
   }
   
@@ -794,6 +796,19 @@
   .depoimentos-grid {
     flex-wrap: wrap;
     gap: 2rem;
+  }
+  
+  /* ===== BOTÃO WHATSAPP DESKTOP ===== */
+  .btn-whatsapp {
+    max-width: 350px;
+    padding: 1.2rem 2.5rem;
+    font-size: 1.1rem;
+    margin-top: 2rem;
+  }
+  
+  .whatsapp-icon {
+    width: 24px;
+    height: 24px;
   }
 }
 
@@ -858,5 +873,56 @@
       opacity: 1;
       transform: translateY(0);
     }
+  }
+  
+  /* ===== BOTÃO WHATSAPP MOBILE ===== */
+  .btn-whatsapp {
+    width: 100%;
+    max-width: 280px;
+    justify-content: center;
+    padding: 1.2rem 1.5rem;
+    font-size: 1.1rem;
+    margin-top: 1.5rem;
+  }
+  
+  .whatsapp-icon {
+    width: 20px;
+    height: 20px;
+  }
+  
+  /* ===== OTIMIZAÇÕES DE PERFORMANCE MOBILE ===== */
+  /* Reduz animações no mobile para melhor performance */
+  .treino-card,
+  .equipe-card,
+  .plano-card,
+  .depoimento-card {
+    transition: all 0.3s ease-out;
+    will-change: transform, opacity;
+  }
+  
+  /* Remove efeitos de hover no mobile */
+  .treino-card:hover,
+  .equipe-card:hover,
+  .plano-card:hover,
+  .depoimento-card:hover {
+    transform: none;
+    box-shadow: var(--shadow-md);
+  }
+  
+  /* Otimiza transformações para aceleração de hardware */
+  .navbar {
+    transform: translate3d(0, 0, 0);
+    will-change: transform;
+  }
+  
+  /* Reduz complexidade de sombras no mobile */
+  .hero-content {
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+  }
+  
+  /* Otimiza scroll para melhor performance */
+  html {
+    scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch;
   }
 }

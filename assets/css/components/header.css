@@ -2,11 +2,12 @@
 
 header {
   background: var(--cor-fundo);
-  position: sticky;
+  position: fixed;
   top: 0;
+  left: 0;
+  right: 0;
   z-index: 1000;
   box-shadow: var(--shadow-sm);
-  transition: transform var(--transition-normal);
   backdrop-filter: blur(10px);
   background: rgba(10, 10, 15, 0.95);
 }
@@ -71,6 +72,51 @@ header {
 
 .nav-links a:hover::after {
   width: 100%;
+}
+
+/* ===== BOTÃO WHATSAPP NO HEADER ===== */
+.whatsapp-nav-item {
+  margin-left: var(--spacing-sm);
+}
+
+.btn-whatsapp-nav {
+  display: flex !important;
+  align-items: center;
+  gap: 0.5rem;
+  background: #25D366;
+  color: white !important;
+  padding: 0.5rem 1rem !important;
+  border-radius: var(--border-radius-xl);
+  font-weight: 600;
+  font-size: 0.9rem;
+  transition: all var(--transition-fast);
+  box-shadow: 0 2px 8px rgba(37, 211, 102, 0.3);
+  border: none;
+  text-decoration: none;
+}
+
+.btn-whatsapp-nav:hover {
+  background: #128C7E;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(37, 211, 102, 0.4);
+  color: white !important;
+}
+
+.btn-whatsapp-nav:active {
+  transform: translateY(0);
+}
+
+.btn-whatsapp-nav svg {
+  flex-shrink: 0;
+}
+
+.whatsapp-text {
+  white-space: nowrap;
+}
+
+/* Remove underline do botão WhatsApp */
+.btn-whatsapp-nav::after {
+  display: none !important;
 }
 
 /* Menu mobile toggle */
@@ -189,6 +235,39 @@ header {
   .nav-links a::after {
     display: none;
   }
+  
+  /* ===== BOTÃO WHATSAPP MOBILE ===== */
+  .whatsapp-nav-item {
+    margin-left: 0;
+    margin-top: 1rem;
+    width: 100%;
+  }
+  
+  .btn-whatsapp-nav {
+    width: 100%;
+    justify-content: center;
+    padding: 1rem !important;
+    font-size: 1.1rem;
+    background: #25D366;
+    color: white !important;
+    border-radius: var(--border-radius-xl);
+    box-shadow: 0 4px 12px rgba(37, 211, 102, 0.3);
+  }
+  
+  .btn-whatsapp-nav:hover {
+    background: #128C7E;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(37, 211, 102, 0.4);
+  }
+  
+  .btn-whatsapp-nav svg {
+    width: 22px;
+    height: 22px;
+  }
+  
+  .whatsapp-text {
+    font-weight: 600;
+  }
 }
 
 /* Melhorias para tablets */
@@ -199,6 +278,17 @@ header {
   
   .logo {
     font-size: 1.2rem;
+  }
+  
+  /* ===== BOTÃO WHATSAPP TABLET ===== */
+  .btn-whatsapp-nav {
+    padding: 0.6rem 1.2rem !important;
+    font-size: 0.95rem;
+  }
+  
+  .btn-whatsapp-nav svg {
+    width: 18px;
+    height: 18px;
   }
   
   .nav-links {
@@ -226,5 +316,23 @@ header {
   
   .nav-links a:hover {
     transform: translateY(-2px);
+  }
+  
+  /* ===== BOTÃO WHATSAPP DESKTOP ===== */
+  .btn-whatsapp-nav {
+    padding: 0.6rem 1.2rem !important;
+    font-size: 0.9rem;
+    margin-left: 0.5rem;
+  }
+  
+  .btn-whatsapp-nav:hover {
+    background: #128C7E;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(37, 211, 102, 0.4);
+  }
+  
+  .btn-whatsapp-nav svg {
+    width: 18px;
+    height: 18px;
   }
 } 

@@ -241,4 +241,37 @@
   color: var(--cor-texto-suave);
   font-size: var(--font-size-md);
   line-height: 1.6;
+}
+
+.contato-info p {
+  margin-bottom: var(--spacing-sm);
+}
+
+.btn-whatsapp {
+  background: #25D366;
+  color: white;
+  display: inline-flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+  margin-top: var(--spacing-md);
+  font-weight: 600;
+  text-decoration: none;
+  border-radius: var(--border-radius-xl);
+  padding: 1rem 2rem;
+  transition: all var(--transition-fast);
+  box-shadow: 0 4px 16px rgba(37, 211, 102, 0.3);
+}
+
+.btn-whatsapp:hover {
+  background: #128C7E;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(37, 211, 102, 0.4);
+}
+
+.btn-whatsapp:active {
+  transform: translateY(0);
+}
+
+.whatsapp-icon {
+  flex-shrink: 0;
 } 
