@@ -1,0 +1,862 @@
+/* ===== RESPONSIVIDADE MOBILE-FIRST ===== */
+
+/* ===== MOBILE BASE (max-width: 480px) ===== */
+@media (max-width: 480px) {
+  /* Reset e configurações base */
+  * {
+    box-sizing: border-box;
+  }
+  
+  html {
+    font-size: 14px;
+    scroll-behavior: smooth;
+  }
+  
+  body {
+    padding: 0;
+    margin: 0;
+    font-size: 1rem;
+    line-height: 1.5;
+    overflow-x: hidden;
+  }
+  
+  .container {
+    padding: 0 1rem;
+    max-width: 100%;
+  }
+  
+  /* ===== HEADER MOBILE ===== */
+  .navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    background: rgba(10, 10, 15, 0.95);
+    backdrop-filter: blur(10px);
+    padding: 0.75rem 1rem;
+    z-index: 1000;
+    border-bottom: 1px solid rgba(255, 215, 0, 0.2);
+  }
+  
+  .logo {
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--cor-principal);
+    text-align: center;
+  }
+  
+  .nav-links {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(10, 10, 15, 0.98);
+    backdrop-filter: blur(15px);
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 2rem;
+    z-index: 999;
+  }
+  
+  .nav-links.active {
+    display: flex;
+  }
+  
+  .nav-links li {
+    list-style: none;
+  }
+  
+  .nav-links a {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--cor-texto);
+    text-decoration: none;
+    padding: 1rem 2rem;
+    border-radius: 12px;
+    transition: all 0.3s ease;
+    display: block;
+    text-align: center;
+  }
+  
+  .nav-links a:hover {
+    background: var(--cor-principal);
+    color: var(--cor-fundo);
+    transform: translateY(-2px);
+  }
+  
+  .menu-toggle {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    cursor: pointer;
+    z-index: 1001;
+  }
+  
+  .menu-toggle span {
+    width: 25px;
+    height: 3px;
+    background: var(--cor-principal);
+    transition: all 0.3s ease;
+    border-radius: 2px;
+  }
+  
+  .menu-toggle.active span:nth-child(1) {
+    transform: rotate(45deg) translate(6px, 6px);
+  }
+  
+  .menu-toggle.active span:nth-child(2) {
+    opacity: 0;
+  }
+  
+  .menu-toggle.active span:nth-child(3) {
+    transform: rotate(-45deg) translate(6px, -6px);
+  }
+  
+  /* ===== HERO MOBILE ===== */
+  .hero {
+    margin-top: 60px;
+    padding: 0;
+    background: none;
+    min-height: 550px;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    overflow: hidden;
+  }
+  
+  .hero-mobile-img {
+    display: block;
+    width: 100%;
+    height: 350px;
+    object-fit: cover;
+    border-radius: 0 0 20px 20px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+  }
+  
+  .hero-content {
+    position: relative;
+    z-index: 2;
+    padding: 2rem 1.5rem;
+    text-align: center;
+    max-width: 320px;
+    margin-top: -2rem;
+    background: rgba(10, 10, 15, 0.95);
+    backdrop-filter: blur(15px);
+    border-radius: 20px;
+    border: 2px solid rgba(255, 215, 0, 0.2);
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4);
+  }
+  
+  .hero-content h1 {
+    font-size: 1.75rem;
+    font-weight: 800;
+    margin-bottom: 1rem;
+    color: var(--cor-texto);
+    line-height: 1.2;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+  }
+  
+  .hero-content p {
+    font-size: 1rem;
+    color: var(--cor-texto-suave);
+    margin-bottom: 0;
+    line-height: 1.5;
+  }
+  
+  /* ===== SEÇÕES MOBILE ===== */
+  .sobre {
+    padding: 5rem 0 2rem 0 !important;
+  }
+  
+  .filosofia,
+  .treinos,
+  .equipe,
+  .depoimentos,
+  .planos,
+  .localizacao,
+  .contato {
+    padding: 2rem 0;
+  }
+  
+  /* Títulos das seções */
+  .sobre-text h2 {
+    font-size: 1.75rem;
+    font-weight: 800;
+    text-align: center;
+    margin-bottom: 0.25rem !important;
+    color: var(--cor-texto);
+  }
+  
+  .sobre-text p {
+    font-size: 1rem;
+    line-height: 1.6;
+    text-align: justify;
+    color: var(--cor-texto-suave);
+    margin-bottom: 0 !important;
+    padding-bottom: 0 !important;
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+  }
+  
+  .filosofia h2,
+  .treinos h2,
+  .equipe h2,
+  .planos h2,
+  .contato h2,
+  .localizacao h2,
+  .depoimentos h2 {
+    font-size: 1.75rem;
+    font-weight: 800;
+    text-align: center;
+    margin-bottom: 1.5rem;
+    color: var(--cor-texto);
+  }
+  
+  /* ===== SOBRE MOBILE ===== */
+  .sobre .container {
+    flex-direction: column;
+    gap: 0;
+    position: relative;
+  }
+  
+  .sobre-text {
+    margin-bottom: 0;
+  }
+  
+  .sobre-img {
+    position: relative;
+    top: -3rem;
+  }
+  
+  .sobre-text p {
+    font-size: 1rem;
+    line-height: 1.6;
+    text-align: justify;
+    color: var(--cor-texto-suave);
+  }
+  
+  .sobre-img img {
+    width: 100%;
+    max-width: 280px;
+    border-radius: 16px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+    display: block;
+    margin: 0 !important;
+  }
+  
+  /* ===== FILOSOFIA MOBILE ===== */
+  .filosofia p {
+    font-size: 1rem;
+    line-height: 1.6;
+    text-align: justify;
+    margin-bottom: 1rem;
+    color: var(--cor-texto-suave);
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+  }
+  
+  /* ===== TREINOS MOBILE ===== */
+  .treinos-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1rem;
+    padding: 0;
+  }
+  
+  .treino-card {
+    background: var(--cor-fundo-sec);
+    border-radius: 16px;
+    padding: 1.5rem 1rem;
+    border-left: 4px solid var(--cor-principal);
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s ease;
+  }
+  
+  .treino-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+  }
+  
+  .treino-card h3 {
+    font-size: 1.25rem;
+    font-weight: 700;
+    margin-bottom: 0.75rem;
+    color: var(--cor-texto);
+  }
+  
+  .treino-card p {
+    font-size: 0.95rem;
+    line-height: 1.5;
+    color: var(--cor-texto-suave);
+  }
+  
+  /* ===== EQUIPE MOBILE ===== */
+  .equipe-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    align-items: center;
+  }
+  
+  .equipe-card {
+    width: 100%;
+    max-width: 280px;
+    background: var(--cor-fundo-sec);
+    border-radius: 16px;
+    padding: 1.5rem 1rem;
+    text-align: center;
+    border-top: 4px solid var(--cor-principal);
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s ease;
+  }
+  
+  .equipe-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+  }
+  
+  .equipe-card p {
+    font-size: 1rem;
+    line-height: 1.5;
+    color: var(--cor-texto-suave);
+  }
+  
+  /* ===== DEPOIMENTOS MOBILE ===== */
+  .depoimentos-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    align-items: center;
+    padding: 0 0.5rem;
+  }
+  
+  .depoimento-card {
+    background: linear-gradient(135deg, rgba(255, 215, 0, 0.05) 0%, rgba(10, 10, 15, 0.95) 100%);
+    border-radius: 20px;
+    padding: 1.25rem 1.25rem;
+    text-align: center;
+    width: 100%;
+    max-width: 300px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s ease;
+    opacity: 0;
+    transform: translateY(40px);
+    border: 2px solid rgba(255, 215, 0, 0.1);
+    position: relative;
+    overflow: hidden;
+    backdrop-filter: blur(10px);
+  }
+  
+  .depoimento-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, var(--cor-principal) 0%, #ffed4e 50%, var(--cor-principal) 100%);
+    transform: scaleX(0);
+    transition: transform 0.3s ease;
+  }
+  
+  .depoimento-card:hover::before {
+    transform: scaleX(1);
+  }
+  
+  .depoimento-card::after {
+    content: '"';
+    position: absolute;
+    top: -10px;
+    left: 1rem;
+    font-size: 4rem;
+    color: var(--cor-principal);
+    font-family: Georgia, serif;
+    opacity: 0.2;
+    font-weight: bold;
+  }
+  
+  .depoimento-card.show {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  
+  .depoimento-card:hover {
+    transform: translateY(-8px) scale(1.02);
+    box-shadow: 0 16px 48px rgba(0, 0, 0, 0.3);
+    border-color: rgba(255, 215, 0, 0.3);
+  }
+  
+  .depoimento-card p {
+    color: var(--cor-texto);
+    font-size: 0.95rem;
+    line-height: 1.5;
+    margin: 0;
+    position: relative;
+    z-index: 1;
+    font-style: italic;
+    font-weight: 500;
+  }
+  
+  /* ===== PLANOS MOBILE ===== */
+  .planos-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    align-items: center;
+  }
+  
+  .plano-card {
+    width: 100%;
+    max-width: 280px;
+    background: linear-gradient(135deg, var(--cor-fundo-sec) 0%, #2a2a4e 100%);
+    border-radius: 16px;
+    padding: 1.5rem 1rem;
+    text-align: center;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s ease;
+    border: 2px solid transparent;
+  }
+  
+  .plano-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+    border-color: var(--cor-principal);
+  }
+  
+  .plano-card.destaque {
+    background: linear-gradient(135deg, var(--cor-principal) 0%, var(--cor-principal-escura) 100%);
+    transform: scale(1.02);
+  }
+  
+  .plano-card h3 {
+    font-size: 1.25rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    color: var(--cor-texto);
+  }
+  
+  .plano-card.destaque h3 {
+    color: var(--cor-fundo);
+  }
+  
+  .plano-card p {
+    font-size: 0.95rem;
+    line-height: 1.5;
+    color: var(--cor-texto-suave);
+  }
+  
+  .plano-card.destaque p {
+    color: var(--cor-fundo);
+  }
+  
+  /* ===== LOCALIZAÇÃO MOBILE ===== */
+  .mapa-boxe {
+    width: 100%;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+  }
+  
+  .mapa-boxe iframe {
+    width: 100%;
+    height: 250px;
+    border: none;
+  }
+  
+  /* ===== CONTATO MOBILE ===== */
+  .contato-info {
+    text-align: center;
+  }
+  
+  .contato-info p {
+    font-size: 1rem;
+    margin-bottom: 0.75rem;
+    line-height: 1.5;
+    color: var(--cor-texto-suave);
+  }
+  
+  /* ===== FOOTER MOBILE ===== */
+  footer {
+    padding: 1.5rem 0;
+    text-align: center;
+    background: var(--cor-fundo-sec);
+    border-top: 1px solid rgba(255, 215, 0, 0.2);
+  }
+  
+  footer p {
+    font-size: 0.9rem;
+    color: var(--cor-texto-suave);
+  }
+}
+
+/* ===== MOBILE MÉDIO (481px - 600px) ===== */
+@media (min-width: 481px) and (max-width: 600px) {
+  .container {
+    padding: 0 1.5rem;
+  }
+  
+  .hero {
+    min-height: 600px;
+  }
+  
+  .hero-mobile-img {
+    height: 400px;
+  }
+  
+  .hero-content {
+    max-width: 400px;
+    padding: 2.5rem 2rem;
+    margin-top: -2.5rem;
+  }
+  
+  .hero-content h1 {
+    font-size: 2rem;
+  }
+  
+  .hero-content p {
+    font-size: 1.1rem;
+  }
+  
+  .depoimento-card {
+    max-width: 350px;
+    padding: 2.5rem 2rem;
+  }
+  
+  .depoimento-card p {
+    font-size: 1.05rem;
+  }
+  
+  .sobre-img img {
+    display: block;
+    width: 100%;
+    max-width: 280px;
+    border-radius: 16px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+  }
+  
+  .sobre-text h2,
+  .filosofia h2,
+  .treinos h2,
+  .equipe h2,
+  .planos h2,
+  .contato h2,
+  .localizacao h2,
+  .depoimentos h2 {
+    font-size: 2rem;
+  }
+  
+  .treinos-grid {
+    gap: 1.25rem;
+  }
+  
+  .equipe-grid {
+    gap: 1.25rem;
+  }
+  
+  .depoimentos-grid {
+    gap: 1.25rem;
+  }
+  
+  .planos-grid {
+    gap: 1.25rem;
+  }
+  
+  .equipe-card,
+  .depoimento-card,
+  .plano-card {
+    max-width: 320px;
+  }
+}
+
+/* ===== MOBILE GRANDE (601px - 700px) ===== */
+@media (min-width: 601px) and (max-width: 700px) {
+  .container {
+    padding: 0 2rem;
+  }
+  
+  .hero {
+    min-height: 650px;
+  }
+  
+  .hero-mobile-img {
+    height: 450px;
+  }
+  
+  .hero-content {
+    max-width: 450px;
+    padding: 3rem 2.5rem;
+    margin-top: -3rem;
+  }
+  
+  .hero-content h1 {
+    font-size: 2rem;
+  }
+  
+  .hero-content p {
+    font-size: 1.2rem;
+  }
+  
+  .depoimento-card {
+    max-width: 400px;
+    padding: 3rem 2.5rem;
+  }
+  
+  .depoimento-card p {
+    font-size: 1.1rem;
+  }
+  
+  .sobre-text h2,
+  .filosofia h2,
+  .treinos h2,
+  .equipe h2,
+  .planos h2,
+  .contato h2,
+  .localizacao h2,
+  .depoimentos h2 {
+    font-size: 2.25rem;
+  }
+  
+  .treinos-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+  }
+  
+  .equipe-grid {
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1.5rem;
+  }
+  
+  .depoimentos-grid {
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1.5rem;
+  }
+  
+  .planos-grid {
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1.5rem;
+  }
+  
+  .equipe-card,
+  .depoimento-card,
+  .plano-card {
+    max-width: 300px;
+    flex: 0 1 300px;
+  }
+}
+
+/* ===== TABLET (701px - 900px) ===== */
+@media (min-width: 701px) and (max-width: 900px) {
+  .container {
+    padding: 0 2.5rem;
+  }
+  
+  .hero {
+    min-height: 700px;
+  }
+  
+  .hero-mobile-img {
+    height: 500px;
+  }
+  
+  .hero-content {
+    max-width: 500px;
+    padding: 3.5rem 3rem;
+    margin-top: -3.5rem;
+  }
+  
+  .hero-content h1 {
+    font-size: 2.25rem;
+  }
+  
+  .hero-content p {
+    font-size: 1.3rem;
+  }
+  
+  .depoimento-card {
+    max-width: 450px;
+    padding: 3.5rem 3rem;
+  }
+  
+  .depoimento-card p {
+    font-size: 1.15rem;
+  }
+  
+  .sobre-text h2,
+  .filosofia h2,
+  .treinos h2,
+  .equipe h2,
+  .planos h2,
+  .contato h2,
+  .localizacao h2,
+  .depoimentos h2 {
+    font-size: 2.5rem;
+  }
+  
+  .treinos-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
+  }
+  
+  .equipe-grid {
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 2rem;
+  }
+  
+  .depoimentos-grid {
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 2rem;
+  }
+  
+  .planos-grid {
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 2rem;
+  }
+  
+  .equipe-card,
+  .depoimento-card,
+  .plano-card {
+    max-width: 320px;
+    flex: 0 1 320px;
+  }
+}
+
+/* ===== DESKTOP (901px+) ===== */
+@media (min-width: 901px) {
+  .menu-toggle {
+    display: none;
+  }
+  
+  .nav-links {
+    display: flex !important;
+    position: static;
+    background: none;
+    backdrop-filter: none;
+    flex-direction: row;
+    gap: 2rem;
+  }
+  
+  .nav-links a {
+    font-size: 1rem;
+    padding: 0.5rem 1rem;
+  }
+  
+  .hero-mobile-img {
+    display: none;
+  }
+  
+  .hero {
+    background: url(../images/Boxe\ 1.jpg) center center/cover no-repeat;
+    min-height: 80vh;
+    margin-top: 0;
+    padding: 0;
+  }
+  
+  .hero-content {
+    background: rgba(10,10,15,0.8);
+    backdrop-filter: blur(10px);
+    box-shadow: var(--shadow-lg);
+    max-width: 600px;
+    padding: var(--spacing-xl) var(--spacing-lg);
+    margin-top: 0;
+  }
+  
+  .treinos-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  .equipe-grid {
+    flex-wrap: wrap;
+    gap: 2rem;
+  }
+  
+  .planos-grid {
+    flex-wrap: wrap;
+    gap: 2rem;
+  }
+  
+  .depoimentos-grid {
+    flex-wrap: wrap;
+    gap: 2rem;
+  }
+}
+
+/* ===== MELHORIAS DE ACESSIBILIDADE ===== */
+@media (max-width: 600px) {
+  /* Melhor contraste para textos */
+  .hero-content h1,
+  .sobre-text h2,
+  .filosofia h2,
+  .treinos h2,
+  .equipe h2,
+  .planos h2,
+  .contato h2,
+  .localizacao h2,
+  .depoimentos h2 {
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.8);
+  }
+  
+  /* Melhor espaçamento para toque */
+  .nav-links a,
+  .treino-card,
+  .equipe-card,
+  .plano-card,
+  .depoimento-card {
+    min-height: 44px;
+  }
+  
+  /* Melhor feedback visual */
+  .treino-card:active,
+  .equipe-card:active,
+  .plano-card:active,
+  .depoimento-card:active {
+    transform: scale(0.98);
+  }
+  
+  /* Melhor legibilidade */
+  .sobre-text p,
+  .filosofia p,
+  .treino-card p,
+  .equipe-card p,
+  .plano-card p,
+  .depoimento-card p {
+    line-height: 1.6;
+  }
+}
+
+/* ===== ANIMAÇÕES MOBILE ===== */
+@media (max-width: 600px) {
+  .treino-card,
+  .equipe-card,
+  .plano-card,
+  .depoimento-card {
+    animation: fadeInUp 0.6s ease-out;
+  }
+  
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+}

@@ -1,0 +1,230 @@
+/* ===== HEADER E NAVEGAÇÃO ===== */
+
+header {
+  background: var(--cor-fundo);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  box-shadow: var(--shadow-sm);
+  transition: transform var(--transition-normal);
+  backdrop-filter: blur(10px);
+  background: rgba(10, 10, 15, 0.95);
+}
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: var(--spacing-md) 0;
+  max-width: var(--desktop);
+  margin: 0 auto;
+  padding-left: 2vw;
+  padding-right: 2vw;
+  position: relative;
+}
+
+.logo {
+  color: var(--cor-principal);
+  font-weight: 700;
+  font-size: var(--font-size-lg);
+  letter-spacing: 1px;
+  text-decoration: none;
+  transition: color var(--transition-fast);
+}
+
+.logo:hover {
+  color: var(--cor-principal-escura);
+}
+
+.nav-links {
+  display: flex;
+  list-style: none;
+  gap: var(--spacing-lg);
+  align-items: center;
+  margin: 0;
+  padding: 0;
+}
+
+.nav-links a {
+  color: var(--cor-texto);
+  text-decoration: none;
+  font-weight: 500;
+  transition: all var(--transition-fast);
+  position: relative;
+  padding: 0.5rem 0;
+}
+
+.nav-links a:hover {
+  color: var(--cor-principal);
+}
+
+.nav-links a::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: var(--cor-principal);
+  transition: width var(--transition-fast);
+}
+
+.nav-links a:hover::after {
+  width: 100%;
+}
+
+/* Menu mobile toggle */
+.menu-toggle {
+  display: none;
+  flex-direction: column;
+  cursor: pointer;
+  gap: 4px;
+  padding: var(--spacing-xs);
+  border: none;
+  background: transparent;
+  transition: all var(--transition-fast);
+}
+
+.menu-toggle:hover {
+  transform: scale(1.1);
+}
+
+.menu-toggle span {
+  width: 25px;
+  height: 3px;
+  background: var(--cor-texto);
+  transition: all var(--transition-fast);
+  border-radius: 2px;
+  display: block;
+}
+
+.menu-toggle.active span:nth-child(1) {
+  transform: rotate(45deg) translate(5px, 5px);
+  background: var(--cor-principal);
+}
+
+.menu-toggle.active span:nth-child(2) {
+  opacity: 0;
+  transform: translateX(-20px);
+}
+
+.menu-toggle.active span:nth-child(3) {
+  transform: rotate(-45deg) translate(7px, -6px);
+  background: var(--cor-principal);
+}
+
+/* Melhorias para mobile */
+@media (max-width: 600px) {
+  header {
+    backdrop-filter: blur(15px);
+    background: rgba(10, 10, 15, 0.98);
+  }
+  
+  .navbar {
+    padding: 0.75rem 1rem;
+  }
+  
+  .logo {
+    font-size: 1.1rem;
+    text-align: center;
+    flex: 1;
+  }
+  
+  .menu-toggle {
+    display: flex;
+    z-index: 1001;
+  }
+  
+  .nav-links {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: 100%;
+    height: 100vh;
+    background: var(--cor-fundo-sec);
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 5rem 2rem 2rem 2rem;
+    gap: 2rem;
+    z-index: 1000;
+    opacity: 0;
+    transform: translateY(-20px);
+    transition: all var(--transition-normal);
+  }
+  
+  .nav-links.active {
+    display: flex;
+    opacity: 1;
+    transform: translateY(0);
+  }
+  
+  .nav-links li {
+    width: 100%;
+    text-align: center;
+  }
+  
+  .nav-links a {
+    font-size: 1.2rem;
+    font-weight: 600;
+    padding: 1rem;
+    display: block;
+    border-radius: var(--border-radius-sm);
+    transition: all var(--transition-fast);
+    min-height: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .nav-links a:hover {
+    background: var(--cor-principal);
+    color: var(--cor-fundo);
+    transform: translateY(-2px);
+  }
+  
+  .nav-links a::after {
+    display: none;
+  }
+}
+
+/* Melhorias para tablets */
+@media (min-width: 601px) and (max-width: 900px) {
+  .navbar {
+    padding: 1rem 1.5rem;
+  }
+  
+  .logo {
+    font-size: 1.2rem;
+  }
+  
+  .nav-links {
+    gap: var(--spacing-md);
+  }
+  
+  .nav-links a {
+    font-size: 0.95rem;
+  }
+}
+
+/* Melhorias para desktop */
+@media (min-width: 901px) {
+  .menu-toggle {
+    display: none;
+  }
+  
+  .nav-links {
+    display: flex !important;
+  }
+  
+  .nav-links a {
+    font-size: 1rem;
+  }
+  
+  .nav-links a:hover {
+    transform: translateY(-2px);
+  }
+} 

@@ -1,0 +1,388 @@
+/* ===== RESET E CONFIGURAÇÕES GLOBAIS ===== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  box-sizing: border-box;
+  overflow-x: hidden;
+  scroll-behavior: smooth;
+  font-size: 16px; /* Base para rem */
+}
+
+* {
+  box-sizing: inherit;
+}
+
+/* ===== VARIÁVEIS CSS ===== */
+:root {
+  /* Cores principais */
+  --cor-principal: #FFD700;
+  --cor-principal-escura: #bfa43a;
+  --cor-destaque: #43bccd;
+  
+  /* Cores de fundo */
+  --cor-fundo: #0a0a0f;
+  --cor-fundo-sec: #1a1a2e;
+  
+  /* Cores de texto */
+  --cor-texto: #ffffff;
+  --cor-texto-suave: #e0e0e0;
+  
+  /* Espaçamentos */
+  --spacing-xs: 0.5rem;
+  --spacing-sm: 1rem;
+  --spacing-md: 1.5rem;
+  --spacing-lg: 2rem;
+  --spacing-xl: 3rem;
+  --spacing-xxl: 4rem;
+  
+  /* Bordas */
+  --border-radius-sm: 8px;
+  --border-radius-md: 16px;
+  --border-radius-lg: 18px;
+  --border-radius-xl: 30px;
+  
+  /* Sombras */
+  --shadow-sm: 0 2px 8px rgba(0,0,0,0.15);
+  --shadow-md: 0 2px 16px rgba(0,0,0,0.12);
+  --shadow-lg: 0 4px 24px rgba(0,0,0,0.18);
+  --shadow-primary: 0 2px 12px rgba(33,118,174,0.15);
+  
+  /* Transições */
+  --transition-fast: 0.2s ease;
+  --transition-normal: 0.3s ease;
+  --transition-slow: 0.5s ease;
+  
+  /* Tipografia */
+  --font-size-xs: 0.875rem;
+  --font-size-sm: 1rem;
+  --font-size-md: 1.125rem;
+  --font-size-lg: 1.25rem;
+  --font-size-xl: 1.5rem;
+  --font-size-xxl: 2rem;
+  
+  /* Breakpoints */
+  --mobile: 600px;
+  --tablet: 900px;
+  --desktop: 1200px;
+}
+
+/* ===== CONFIGURAÇÕES DO BODY ===== */
+body {
+  font-family: 'Montserrat', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+  background: var(--cor-fundo);
+  color: var(--cor-texto);
+  line-height: 1.6;
+  padding-left: 2vw;
+  padding-right: 2vw;
+  overflow-x: hidden;
+  font-size: var(--font-size-sm);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+/* ===== UTILITÁRIOS ===== */
+.container {
+  max-width: var(--desktop);
+  margin: 0 auto;
+  padding-left: 2vw;
+  padding-right: 2vw;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* ===== BOTÕES ===== */
+.btn {
+  display: inline-block;
+  font-weight: 700;
+  text-decoration: none;
+  border-radius: var(--border-radius-xl);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  border: none;
+  padding: 0.9rem 2.2rem;
+  font-size: var(--font-size-md);
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.btn::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+  transition: left var(--transition-slow);
+}
+
+.btn:hover::before {
+  left: 100%;
+}
+
+.btn-primary {
+  background: var(--cor-principal);
+  color: var(--cor-fundo);
+  text-shadow: 0 1px 0 #fff8;
+  box-shadow: var(--shadow-primary);
+}
+
+.btn-primary:hover {
+  background: var(--cor-principal-escura);
+  color: var(--cor-texto);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 16px rgba(255, 215, 0, 0.3);
+}
+
+.btn-primary:active {
+  transform: translateY(0);
+}
+
+.btn-secondary {
+  background: transparent;
+  color: var(--cor-principal);
+  border: 2px solid var(--cor-principal);
+}
+
+.btn-secondary:hover {
+  background: var(--cor-principal);
+  color: var(--cor-texto);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 16px rgba(255, 215, 0, 0.2);
+}
+
+.btn-secondary:active {
+  transform: translateY(0);
+}
+
+/* ===== ANIMAÇÕES GLOBAIS ===== */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideInRight {
+  from {
+    opacity: 0;
+    transform: translateX(40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.fade-in-up {
+  animation: fadeInUp 0.7s cubic-bezier(.4,0,.2,1);
+}
+
+.fade-in {
+  animation: fadeIn 0.5s ease;
+}
+
+.slide-in-left {
+  animation: slideInLeft 0.6s cubic-bezier(.4,0,.2,1);
+}
+
+.slide-in-right {
+  animation: slideInRight 0.6s cubic-bezier(.4,0,.2,1);
+}
+
+/* ===== FOOTER ===== */
+footer {
+  background: var(--cor-fundo);
+  color: var(--cor-texto-suave);
+  text-align: center;
+  padding: var(--spacing-md) 0;
+  font-size: var(--font-size-sm);
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* ===== MELHORIAS MOBILE ===== */
+@media (max-width: 600px) {
+  html {
+    font-size: 14px; /* Reduz base para mobile */
+  }
+  
+  body {
+    padding-left: 0;
+    padding-right: 0;
+    font-size: 16px; /* Previne zoom em iOS */
+  }
+  
+  .container {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+  
+  .btn {
+    padding: 0.8rem 1.8rem;
+    font-size: 1rem;
+    min-height: 44px; /* Mínimo para toque */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .btn:active {
+    transform: scale(0.98);
+  }
+  
+  /* Melhor contraste para mobile */
+  .btn-primary {
+    text-shadow: 0 1px 2px rgba(0,0,0,0.3);
+  }
+  
+  /* Melhor legibilidade */
+  h1, h2, h3, h4, h5, h6 {
+    line-height: 1.2;
+    margin-bottom: 0.75rem;
+  }
+  
+  p {
+    line-height: 1.6;
+    margin-bottom: 1rem;
+  }
+}
+
+/* ===== MELHORIAS TABLET ===== */
+@media (min-width: 601px) and (max-width: 900px) {
+  html {
+    font-size: 15px;
+  }
+  
+  .container {
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+  }
+  
+  .btn {
+    padding: 0.85rem 2rem;
+  }
+}
+
+/* ===== MELHORIAS DESKTOP ===== */
+@media (min-width: 901px) {
+  html {
+    font-size: 16px;
+  }
+  
+  .container {
+    padding-left: 2rem;
+    padding-right: 2rem;
+  }
+  
+  .btn:hover {
+    transform: translateY(-3px);
+  }
+}
+
+/* ===== MELHORIAS DE PERFORMANCE ===== */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* ===== MELHORIAS DE ACESSIBILIDADE ===== */
+@media (prefers-contrast: high) {
+  :root {
+    --cor-texto: #ffffff;
+    --cor-texto-suave: #ffffff;
+    --cor-principal: #ffff00;
+  }
+  
+  .btn {
+    border: 2px solid currentColor;
+  }
+}
+
+/* ===== MELHORIAS DE FOCO ===== */
+*:focus {
+  outline: 2px solid var(--cor-principal);
+  outline-offset: 2px;
+}
+
+*:focus:not(:focus-visible) {
+  outline: none;
+}
+
+/* ===== MELHORIAS DE SELEÇÃO ===== */
+::selection {
+  background: var(--cor-principal);
+  color: var(--cor-fundo);
+}
+
+::-moz-selection {
+  background: var(--cor-principal);
+  color: var(--cor-fundo);
+}
+
+/* ===== MELHORIAS DE SCROLLBAR ===== */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--cor-fundo-sec);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--cor-principal);
+  border-radius: var(--border-radius-sm);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--cor-principal-escura);
+} 

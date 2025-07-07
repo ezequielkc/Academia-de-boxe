@@ -1,0 +1,30 @@
+{
+  "name": "academia-de-boxe-ivanovitch",
+  "version": "1.0.0",
+  "description": "Site institucional da Academia de Boxe Ivanovitch em Blumenau",
+  "main": "index.html",
+  "scripts": {
+    "dev": "npx serve . -p 8000",
+    "lint": "npx eslint assets/js/*.js",
+    "format": "npx prettier --write .",
+    "build": "echo 'Build completed - static site ready'"
+  },
+  "keywords": [
+    "boxe",
+    "academia",
+    "blumenau",
+    "esporte",
+    "defesa-pessoal"
+  ],
+  "author": "Academia de Boxe Ivanovitch",
+  "license": "UNLICENSED",
+  "devDependencies": {
+    "eslint": "^8.0.0",
+    "prettier": "^3.0.0",
+    "serve": "^14.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "local"
+  }
+} 
